@@ -12,7 +12,7 @@ app.disable('x-powered-by')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
 
-console.log("taking day off toady");
+console.log("taking day off toady 1");
 
 //routes
 app.use('/',todoRoute)
