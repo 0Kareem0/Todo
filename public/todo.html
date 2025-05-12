@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="todo.css">
 </head>
 <body>
@@ -13,15 +14,58 @@
     <!-- Input and Button for Adding New Tasks -->
     <div class="todo-input">
       <input type="text" id="new-task" placeholder="Enter new task" />
+      <!-- create priority -->
+      <select id="priority">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+
+      <!-- create deadline -->
+      <input type="date" id="deadline">
       <button onclick="addTask()">Add</button>
     </div>
     
-    <ul class="todo-list">
-      <li><input type="checkbox" /> Learn HTML</li>
-      <li><input type="checkbox" /> Practice CSS</li>
-      <li><input type="checkbox" /> Build a Project</li>
-      <li><input type="checkbox" /> Take a Break</li>
+    <ul class="todo-list" id="todo-list">
     </ul>
   </div>
 </body>
+<script>
+    const addTask = () => {
+
+        axios.post('/add', {
+            text: document.getElementById('new-task').value,
+            priority: document.getElementById('priority').value,
+            deadline: document.getElementById('deadline').value
+        })
+        .then((response) => {
+            document.getElementById('new-task').value = '';
+            document.getElementById('priority').value = 'high';
+            document.getElementById('deadline').value = '';
+            getAllTasks()
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+
+    const getAllTasks = () => {
+        axios.get('/all')
+        .then((response) => {
+            const tasks = response.data;
+            const todoList = document.getElementById('todo-list');
+            todoList.innerHTML = '';
+            tasks.forEach((task) => {              
+                const li = document.createElement('li');
+                li.textContent = task.text + ' - ' + task.priority + ' - ' + task.deadline;
+                todoList.appendChild(li);
+            });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+
+    getAllTasks()
+</script>
 </html>

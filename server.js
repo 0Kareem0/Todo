@@ -12,7 +12,9 @@ app.disable('x-powered-by')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
 
-console.log("taking day off toady 1");
+
+console.log('+1 everyday');
+
 
 //routes
 app.use('/',todoRoute)
@@ -23,3 +25,4 @@ connectDB()
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`);
 });
+
