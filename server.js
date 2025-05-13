@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
 
 
-console.log('+1 everyday');
+console.log('+2 everyday');
 
 
 //routes
