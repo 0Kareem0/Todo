@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+  <div class="todo-container">
+    <h1>My To-Do List</h1>
+    <!-- Input and Button for Adding New Tasks -->
+    <div class="todo-input">
+      <input type="text" id="new-task" placeholder="Enter new task" />
+      <!-- create priority -->
+      <select id="priority">
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <!-- create deadline -->
+      <input type="date" id="deadline">
+      <button onclick="addTask()">Add</button>
+   <!-- update task -->
+   <button onclick="updateTask()">Update</button>
+   <!-- delete task -->
+   <button onclick="deleteTask()">Delete</button>
+    </div>
+    <ul class="todo-list" id="todo-list"></ul>
+  </div>
+</body>
+<script src="app.js"></script>
+</html>
